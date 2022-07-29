@@ -34,16 +34,64 @@ public class CEducacion {
         List<Educacion> list = sEducacion.list();
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
+    
+    
+    
+    
+    @GetMapping("/detail/{id}")
+    public ResponseEntity<Educacion> getById(@PathVariable("id")int id){
+        if(!sEducacion.existsById(id)){
+        return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.BAD_REQUEST);
+        }
+        
+        Educacion educacion = sEducacion.getOne(id).get();
+        return new ResponseEntity(educacion, HttpStatus.OK);
+    }
+    //Borrar
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") int id) {
+        if (!sEducacion.existsById(id))
+            return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
+        sEducacion.delete(id);
+        return new ResponseEntity(new Mensaje("Educación creada"), HttpStatus.OK);
+    }
 
+// Crear
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/create")
+    public ResponseEntity<?> create(@RequestBody dtoEducacion dtoEdu) {
+        if (StringUtils.isBlank(dtoEdu.getTituloEd()))
+            return new ResponseEntity(new Mensaje("El titulo es obligatorio"), HttpStatus.BAD_REQUEST);
+        
+        if (sEducacion.existsByTituloEd(dtoEdu.getTituloEd()))
+            return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
+        
+        if (StringUtils.isBlank(dtoEdu.getDescripcionEd()))
+            return new ResponseEntity(new Mensaje("La descripcion del titulo es obligatoria"), HttpStatus.BAD_REQUEST);
+        
+        
+
+        Educacion educacion = new Educacion (dtoEdu.getTituloEd(), dtoEdu.getDescripcionEd(), dtoEdu.getFechaEd(), dtoEdu.getImgEd());
+        sEducacion.save(educacion);
+
+        return new ResponseEntity(new Mensaje("Experiencia creada"), HttpStatus.OK);
+    }
+
+ 
+    //ACtualizar
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoEducacion dtoEdu) {
         if (!sEducacion.existsById(id))
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
+        
         if (sEducacion.existsByTituloEd(dtoEdu.getTituloEd()) && sEducacion.getByTituloEd(dtoEdu.getTituloEd()).get().getId() != id)
             return new ResponseEntity(new Mensaje("Ese titulo ya existe"), HttpStatus.BAD_REQUEST);
+        
         if (StringUtils.isBlank(dtoEdu.getTituloEd()))
             return new ResponseEntity(new Mensaje("El titulo es obligatorio"), HttpStatus.BAD_REQUEST);
+        
         if (StringUtils.isBlank(dtoEdu.getDescripcionEd()))
             return new ResponseEntity(new Mensaje("La descripcion es obligatoria"), HttpStatus.BAD_REQUEST);
 
@@ -52,31 +100,6 @@ public class CEducacion {
         educacion.setDescripcionEd(dtoEdu.getDescripcionEd());
         educacion.setFechaEd(dtoEdu.getFechaEd());
         sEducacion.save(educacion);
-        return new ResponseEntity(new Mensaje("experiencia actualizado"), HttpStatus.OK);
-    }
-
-    @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody dtoEducacion dtoEdu) {
-        if (StringUtils.isBlank(dtoEdu.getTituloEd()))
-            return new ResponseEntity(new Mensaje("El titulo es obligatorio"), HttpStatus.BAD_REQUEST);
-        if (StringUtils.isBlank(dtoEdu.getDescripcionEd()))
-            return new ResponseEntity(new Mensaje("la descripcion del titulo es obligatoria"), HttpStatus.BAD_REQUEST);
-        if (sEducacion.existsByTituloEd(dtoEdu.getTituloEd()))
-            return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
-
-        Educacion educacion = new Educacion (dtoEdu.getTituloEd(), dtoEdu.getDescripcionEd(), dtoEdu.getFechaEd(), dtoEdu.getImgEd());
-        sEducacion.save(educacion);
-
-        return new ResponseEntity(new Mensaje("Experiencia creada"), HttpStatus.OK);
-    }
-
-     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") int id) {
-        if (!sEducacion.existsById(id))
-            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
-        sEducacion.delete(id);
-        return new ResponseEntity(new Mensaje("experiencia eliminada"), HttpStatus.OK);
+        return new ResponseEntity(new Mensaje("Educación actualizada"), HttpStatus.OK);
     }
 }
