@@ -1,28 +1,26 @@
-
 package com.portfolio.mariquena.Dto;
 
 import javax.validation.constraints.NotBlank;
 
-
-public class dtoExp {
-  @NotBlank  
-  private String nombreE;
-  @NotBlank
+public class dtoExperiencia {
+    @NotBlank
+    private String nombreE;
+    @NotBlank
     private String descripcionE;
 
+    
+    
+    //Constructores
 
-//Constructor 
-
-    public dtoExp() {
+    public dtoExperiencia() {
+        
     }
 
-    public dtoExp(String nombreE, String descripcionE) {
+    public dtoExperiencia(String nombreE, String descripcionE) {
         this.nombreE = nombreE;
         this.descripcionE = descripcionE;
     }
-
-    
-    //GYS
+    //Getters & Setters
 
     public String getNombreE() {
         return nombreE;
@@ -40,5 +38,5 @@ public class dtoExp {
         this.descripcionE = descripcionE;
     }
     
-    
+
 }

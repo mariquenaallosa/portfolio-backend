@@ -17,7 +17,7 @@ import lombok.Setter;
 
 @Getter @Setter
 @Entity
-public class Persona implements Serializable {
+public class Persona{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

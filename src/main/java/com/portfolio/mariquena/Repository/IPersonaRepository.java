@@ -1,6 +1,5 @@
 
 package com.portfolio.mariquena.Repository;
-
 import com.portfolio.mariquena.Entity.Persona;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

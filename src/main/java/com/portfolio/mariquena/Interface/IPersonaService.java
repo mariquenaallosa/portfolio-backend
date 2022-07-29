@@ -1,6 +1,5 @@
 
 package com.portfolio.mariquena.Interface;
-
 import com.portfolio.mariquena.Entity.Persona;
 import java.util.List;
 
