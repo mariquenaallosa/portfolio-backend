@@ -27,8 +27,8 @@ public class SExperiencia {
      }
      
     //Busca por nombre
-     public Optional<Experiencia> getByNombreE(String nombreE){
-         return rExperiencia.findByNombreE(nombreE);
+     public Optional<Experiencia> getByNombreE(String TituloExp){
+         return rExperiencia.findByTituloExp(TituloExp);
      }
      
      public void save(Experiencia expe){
@@ -47,8 +47,8 @@ public class SExperiencia {
          return rExperiencia.existsById(id);
      }
      
-     public boolean existsByNombreE(String nombreE){
-         return rExperiencia.existsByNombreE(nombreE);
+     public boolean existsByNombreE(String TituloExp){
+         return rExperiencia.existsByTituloExp(TituloExp);
      }
     
     

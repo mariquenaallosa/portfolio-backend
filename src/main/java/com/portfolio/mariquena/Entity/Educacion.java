@@ -1,6 +1,5 @@
 package com.portfolio.mariquena.Entity;
 
-
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
@@ -13,47 +12,59 @@ import javax.persistence.TemporalType;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 
 
 @Getter @Setter
 @Entity
-public class Experiencia implements Serializable{
-
+public class Educacion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name="titulo_exp")
-    private String tituloExp;
-    private String empleador;
+    
+   
+    @Column(name="titulo_ed")
+    private String tituloEd;
+
+    private String institucion;
+    
+    
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(iso=ISO.DATE)
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     @Column(name="fecha_ingreso")
     private Date fechaIngreso;
-    @Column(name="descripcion_e")
-    private String descripcionE;
     
     
-  
+    
+    @Column (name="descripcion_ed")    
+    private String descripcionEd;
+
+
+
+    
+    
     //Constructores
-    public Experiencia() {
+
+    public Educacion() {
     }
 
-    public Experiencia(String tituloExp, String empleador, Date fechaIngreso, String descripcionE) {
-        this.tituloExp = tituloExp;
-        this.empleador = empleador;
+    public Educacion(String tituloEd, String institucion, Date fechaIngreso, String descripcionEd) {
+        this.tituloEd = tituloEd;
+        this.institucion = institucion;
         this.fechaIngreso = fechaIngreso;
-        this.descripcionE = descripcionE;
+        this.descripcionEd = descripcionEd;
     }
 
-    public Experiencia(int id, String tituloExp, String empleador, Date fechaIngreso, String descripcionE) {
+
+    public Educacion(int id, String tituloEd, String institucion, Date fechaIngreso, String descripcionEd) {
         this.id = id;
-        this.tituloExp = tituloExp;
-        this.empleador = empleador;
+        this.tituloEd = tituloEd;
+        this.institucion = institucion;
         this.fechaIngreso = fechaIngreso;
-        this.descripcionE = descripcionE;
+        this.descripcionEd = descripcionEd;
     }
 
-       
+    
+
+
 }
