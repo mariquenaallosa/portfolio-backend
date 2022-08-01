@@ -1,56 +1,59 @@
 package com.portfolio.mariquena.Entity;
 
 
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+
+
+@Getter @Setter
 @Entity
-public class Experiencia{
+public class Experiencia implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String nombreE;
+    @Column(name="titulo_exp")
+    private String tituloExp;
+    private String empleador;
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(iso=ISO.DATE)
+    @Column(name="fecha_ingreso")
+    private Date fechaIngreso;
+    @Column(name="descripcion_e")
     private String descripcionE;
+    
+    
   
     //Constructores
     public Experiencia() {
     }
 
-    public Experiencia(String nombreE, String descripcionE) {
-
-        this.nombreE = nombreE;
+    public Experiencia(String tituloExp, String empleador, Date fechaIngreso, String descripcionE) {
+        this.tituloExp = tituloExp;
+        this.empleador = empleador;
+        this.fechaIngreso = fechaIngreso;
         this.descripcionE = descripcionE;
-   
     }
 
-    //Getter and setters
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
+    public Experiencia(int id, String tituloExp, String empleador, Date fechaIngreso, String descripcionE) {
         this.id = id;
-    }
-
-    public String getNombreE() {
-        return nombreE;
-    }
-
-    public void setNombreE(String nombreE) {
-        this.nombreE = nombreE;
-    }
-
-    public String getDescripcionE() {
-        return descripcionE;
-    }
-
-    public void setDescripcionE(String descripcionE) {
+        this.tituloExp = tituloExp;
+        this.empleador = empleador;
+        this.fechaIngreso = fechaIngreso;
         this.descripcionE = descripcionE;
     }
 
-
-
+       
 }

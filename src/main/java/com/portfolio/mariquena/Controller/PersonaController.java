@@ -23,7 +23,7 @@ public class PersonaController {
     
     
    //Declarando métodos 
-    //Para que nos traiga al front (hablando en criollo) 
+    //Pide 
     
     @GetMapping("personas/traer")
     public List<Persona> getPersona(){
@@ -58,13 +58,27 @@ public class PersonaController {
     public Persona editPersona(@PathVariable Long id,
             @RequestParam("nombre") String nuevoNombre,
             @RequestParam("apellido") String nuevoApellido,
-            @RequestParam("img") String nuevoImg){
+            @RequestParam("titulo") String nuevoTitulo,
+            @RequestParam("about") String nuevoAbout,
+            @RequestParam("linkedinUrl")String nuevoLinkedinUrl,
+            @RequestParam("githubUrl") String nuevoGithubUrl,
+            @RequestParam("email") String nuevoEmail,
+            @RequestParam("bannerUrl") String nuevoBannerUrl,
+            @RequestParam("photoUrl") String nuevoPhotoUrl){
        Persona persona= ipersonaService.findPersona(id);
        
        
        persona.setNombre(nuevoNombre);
        persona.setApellido(nuevoApellido);
-       persona.setImg(nuevoImg);
+       persona.setTitulo(nuevoTitulo);
+       persona.setAbout(nuevoAbout);
+       persona.setLinkedinUrl(nuevoLinkedinUrl);
+       persona.setGithubUrl(nuevoGithubUrl);
+       persona.setEmail(nuevoEmail);
+       persona.setBannerUrl(nuevoBannerUrl);
+       persona.setPhotoUrl(nuevoPhotoUrl);
+       
+       
        
        
        ipersonaService.savePersona(persona);

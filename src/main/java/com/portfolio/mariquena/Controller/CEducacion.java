@@ -71,10 +71,9 @@ public class CEducacion {
             return new ResponseEntity(new Mensaje("La descripcion del titulo es obligatoria"), HttpStatus.BAD_REQUEST);
         
         
-
-        Educacion educacion = new Educacion (dtoEdu.getTituloEd(), dtoEdu.getDescripcionEd(), dtoEdu.getFechaEd(), dtoEdu.getImgEd());
+        Educacion educacion = new Educacion(dtoEdu.getTituloEd(),dtoEdu.getInstitucion(),dtoEdu.getFechaIngreso(), dtoEdu.getDescripcionEd());
         sEducacion.save(educacion);
-
+      
         return new ResponseEntity(new Mensaje("Experiencia creada"), HttpStatus.OK);
     }
 
@@ -98,7 +97,6 @@ public class CEducacion {
         Educacion educacion = sEducacion.getOne(id).get();
         educacion.setTituloEd(dtoEdu.getTituloEd());
         educacion.setDescripcionEd(dtoEdu.getDescripcionEd());
-        educacion.setFechaEd(dtoEdu.getFechaEd());
         sEducacion.save(educacion);
         return new ResponseEntity(new Mensaje("Educación actualizada"), HttpStatus.OK);
     }
