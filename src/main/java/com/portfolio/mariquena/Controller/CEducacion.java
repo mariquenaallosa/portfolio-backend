@@ -91,11 +91,16 @@ public class CEducacion {
         if (StringUtils.isBlank(dtoEdu.getTituloEd()))
             return new ResponseEntity(new Mensaje("El titulo es obligatorio"), HttpStatus.BAD_REQUEST);
         
+        if (StringUtils.isBlank(dtoEdu.getInstitucion()))
+            return new ResponseEntity(new Mensaje("La institución es obligatoria"), HttpStatus.BAD_REQUEST);
+        
         if (StringUtils.isBlank(dtoEdu.getDescripcionEd()))
             return new ResponseEntity(new Mensaje("La descripcion es obligatoria"), HttpStatus.BAD_REQUEST);
 
         Educacion educacion = sEducacion.getOne(id).get();
         educacion.setTituloEd(dtoEdu.getTituloEd());
+        educacion.setInstitucion(dtoEdu.getInstitucion());
+        educacion.setFechaIngreso(dtoEdu.getFechaIngreso());
         educacion.setDescripcionEd(dtoEdu.getDescripcionEd());
         sEducacion.save(educacion);
         return new ResponseEntity(new Mensaje("Educación actualizada"), HttpStatus.OK);
