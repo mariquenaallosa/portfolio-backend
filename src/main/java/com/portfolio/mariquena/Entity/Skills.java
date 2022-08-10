@@ -20,7 +20,7 @@ public class Skills {
     private int id;
     
     @Column(name="skills_level")
-    private String skillsLevel;
+    private int skillsLevel;
     
     @Column(name="nombre_skill")
     private String nombreSkill;
@@ -32,13 +32,13 @@ public class Skills {
     public Skills() {
     }
 
-    public Skills(String skillsLevel, String nombreSkill, String imgSkill) {
+    public Skills(int skillsLevel, String nombreSkill, String imgSkill) {
         this.skillsLevel = skillsLevel;
         this.nombreSkill = nombreSkill;
         this.imgSkill = imgSkill;
     }
     
-    public Skills(int id, String skillsLevel, String nombreSkill, String imgSkill) {
+    public Skills(int id, int skillsLevel, String nombreSkill, String imgSkill) {
         this.id = id;
         this.skillsLevel = skillsLevel;
         this.nombreSkill = nombreSkill;

@@ -63,15 +63,14 @@ public class CEducacion {
     public ResponseEntity<?> create(@RequestBody dtoEducacion dtoEdu) {
         if (StringUtils.isBlank(dtoEdu.getTituloEd()))
             return new ResponseEntity(new Mensaje("El titulo es obligatorio"), HttpStatus.BAD_REQUEST);
-        
+            
         if (sEducacion.existsByTituloEd(dtoEdu.getTituloEd()))
             return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         
         if (StringUtils.isBlank(dtoEdu.getDescripcionEd()))
             return new ResponseEntity(new Mensaje("La descripcion del titulo es obligatoria"), HttpStatus.BAD_REQUEST);
         
-        
-        Educacion educacion = new Educacion(dtoEdu.getTituloEd(),dtoEdu.getInstitucion(),dtoEdu.getFechaIngreso(), dtoEdu.getDescripcionEd());
+        Educacion educacion = new Educacion(dtoEdu.getTituloEd(),dtoEdu.getInstitucion(),dtoEdu.getFechaIngreso(),dtoEdu.getFechaFinal(), dtoEdu.getDescripcionEd());
         sEducacion.save(educacion);
       
         return new ResponseEntity(new Mensaje("Experiencia creada"), HttpStatus.OK);
@@ -101,6 +100,7 @@ public class CEducacion {
         educacion.setTituloEd(dtoEdu.getTituloEd());
         educacion.setInstitucion(dtoEdu.getInstitucion());
         educacion.setFechaIngreso(dtoEdu.getFechaIngreso());
+        educacion.setFechaFinal(dtoEdu.getFechaFinal());
         educacion.setDescripcionEd(dtoEdu.getDescripcionEd());
         sEducacion.save(educacion);
         return new ResponseEntity(new Mensaje("Educación actualizada"), HttpStatus.OK);

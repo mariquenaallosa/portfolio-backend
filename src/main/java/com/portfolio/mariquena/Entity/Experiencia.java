@@ -2,18 +2,13 @@ package com.portfolio.mariquena.Entity;
 
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 
 
@@ -27,10 +22,13 @@ public class Experiencia implements Serializable{
     @Column(name="titulo_exp")
     private String tituloExp;
     private String empleador;
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(iso=ISO.DATE)
+    
     @Column(name="fecha_ingreso")
-    private Date fechaIngreso;
+    private int fechaIngreso;
+     @Column(name="fecha_final")
+    private int fechaFinal;
+    
+    
     @Column(name="descripcion_e")
     private String descripcionE;
     
@@ -40,18 +38,20 @@ public class Experiencia implements Serializable{
     public Experiencia() {
     }
 
-    public Experiencia(String tituloExp, String empleador, Date fechaIngreso, String descripcionE) {
+    public Experiencia(String tituloExp, String empleador, int fechaIngreso,int fechaFinal, String descripcionE) {
         this.tituloExp = tituloExp;
         this.empleador = empleador;
         this.fechaIngreso = fechaIngreso;
+        this.fechaFinal = fechaFinal;
         this.descripcionE = descripcionE;
     }
 
-    public Experiencia(int id, String tituloExp, String empleador, Date fechaIngreso, String descripcionE) {
+    public Experiencia(int id, String tituloExp, String empleador, int fechaIngreso,int fechaFinal, String descripcionE) {
         this.id = id;
         this.tituloExp = tituloExp;
         this.empleador = empleador;
         this.fechaIngreso = fechaIngreso;
+        this.fechaFinal = fechaFinal;
         this.descripcionE = descripcionE;
     }
 

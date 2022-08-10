@@ -1,6 +1,5 @@
 package com.portfolio.mariquena.Dto;
 
-import java.util.Date;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import lombok.Getter;
@@ -13,7 +12,9 @@ public class dtoEducacion {
     @NotBlank 
     private String institucion;
     @NotNull
-    private Date fechaIngreso;
+    private int fechaIngreso;
+    @NotNull
+    private int fechaFinal;
     @NotBlank
     private String descripcionEd;
     
@@ -24,10 +25,11 @@ public class dtoEducacion {
     public dtoEducacion() {
     }
 
-    public dtoEducacion(String tituloEd, String institucion, Date fechaIngreso, String descripcionEd) {
+    public dtoEducacion(String tituloEd, String institucion, int fechaIngreso,int fechaFinal, String descripcionEd) {
         this.tituloEd = tituloEd;
         this.institucion = institucion;
         this.fechaIngreso = fechaIngreso;
+        this.fechaFinal = fechaFinal; 
         this.descripcionEd = descripcionEd;
     }
 

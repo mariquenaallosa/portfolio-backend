@@ -84,9 +84,6 @@ public class CSkills  {
         
         if (StringUtils.isBlank(dtoSkills.getNombreSkill()))
             return new ResponseEntity(new Mensaje("La habilidad es obligatoria"), HttpStatus.BAD_REQUEST);
-        
-        if (StringUtils.isBlank(dtoSkills.getSkillsLevel()))
-            return new ResponseEntity(new Mensaje("El nivel de la habilidad es obligatorio"), HttpStatus.BAD_REQUEST);
 
         Skills skills = sSkills.getOne(id).get();
         skills.setSkillsLevel(dtoSkills.getSkillsLevel());

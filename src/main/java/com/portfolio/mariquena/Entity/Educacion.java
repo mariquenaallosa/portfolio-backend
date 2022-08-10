@@ -1,17 +1,13 @@
 package com.portfolio.mariquena.Entity;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 
 
@@ -29,11 +25,11 @@ public class Educacion implements Serializable {
     private String institucion;
     
     
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     @Column(name="fecha_ingreso")
-    private Date fechaIngreso;
+    private int fechaIngreso;
     
+    @Column(name="fecha_final")
+    private int fechaFinal;
     
     
     @Column (name="descripcion_ed")    
@@ -48,15 +44,17 @@ public class Educacion implements Serializable {
     public Educacion() {
     }
 
-    public Educacion(String tituloEd, String institucion, Date fechaIngreso, String descripcionEd) {
+    public Educacion(String tituloEd, String institucion, int fechaIngreso,int fechaFinal, String descripcionEd) {
         this.tituloEd = tituloEd;
         this.institucion = institucion;
         this.fechaIngreso = fechaIngreso;
+        this.fechaFinal = fechaFinal;
         this.descripcionEd = descripcionEd;
+        
     }
 
 
-    public Educacion(int id, String tituloEd, String institucion, Date fechaIngreso, String descripcionEd) {
+    public Educacion(int id, String tituloEd, String institucion, int fechaIngreso,int fechaFinal, String descripcionEd) {
         this.id = id;
         this.tituloEd = tituloEd;
         this.institucion = institucion;
