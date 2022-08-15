@@ -18,7 +18,6 @@ public class Educacion implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-   
     @Column(name="titulo_ed")
     private String tituloEd;
 

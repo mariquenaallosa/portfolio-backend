@@ -30,9 +30,9 @@ public class SExperiencia {
      public Optional<Experiencia> getByNombreE(String TituloExp){
          return rExperiencia.findByTituloExp(TituloExp);
      }
-     
-     public void save(Experiencia expe){
-         rExperiencia.save(expe);
+     //
+     public void save(Experiencia experiencia){
+         rExperiencia.save(experiencia);
      }
      
     //Borrar por id

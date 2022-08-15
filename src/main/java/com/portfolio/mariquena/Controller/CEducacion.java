@@ -1,11 +1,9 @@
 package com.portfolio.mariquena.Controller;
 
-import com.portfolio.mariquena.Dto.dtoEducacion;
 import com.portfolio.mariquena.Entity.Educacion;
 import com.portfolio.mariquena.Security.Controller.Mensaje;
 import com.portfolio.mariquena.Service.SEducacion;
 import java.util.List;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,7 +46,6 @@ public class CEducacion {
         return new ResponseEntity(educacion, HttpStatus.OK);
     }
     //Borrar
-    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
         if (!sEducacion.existsById(id))
@@ -58,51 +55,16 @@ public class CEducacion {
     }
 
 // Crear
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody dtoEducacion dtoEdu) {
-        if (StringUtils.isBlank(dtoEdu.getTituloEd()))
-            return new ResponseEntity(new Mensaje("El titulo es obligatorio"), HttpStatus.BAD_REQUEST);
-            
-        if (sEducacion.existsByTituloEd(dtoEdu.getTituloEd()))
-            return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
-        
-        if (StringUtils.isBlank(dtoEdu.getDescripcionEd()))
-            return new ResponseEntity(new Mensaje("La descripcion del titulo es obligatoria"), HttpStatus.BAD_REQUEST);
-        
-        Educacion educacion = new Educacion(dtoEdu.getTituloEd(),dtoEdu.getInstitucion(),dtoEdu.getFechaIngreso(),dtoEdu.getFechaFinal(), dtoEdu.getDescripcionEd());
+    public void create(@RequestBody Educacion educacion) {
         sEducacion.save(educacion);
-      
-        return new ResponseEntity(new Mensaje("Experiencia creada"), HttpStatus.OK);
     }
 
  
-    //ACtualizar
-    @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/update/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoEducacion dtoEdu) {
-        if (!sEducacion.existsById(id))
-            return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
-        
-        if (sEducacion.existsByTituloEd(dtoEdu.getTituloEd()) && sEducacion.getByTituloEd(dtoEdu.getTituloEd()).get().getId() != id)
-            return new ResponseEntity(new Mensaje("Ese titulo ya existe"), HttpStatus.BAD_REQUEST);
-        
-        if (StringUtils.isBlank(dtoEdu.getTituloEd()))
-            return new ResponseEntity(new Mensaje("El titulo es obligatorio"), HttpStatus.BAD_REQUEST);
-        
-        if (StringUtils.isBlank(dtoEdu.getInstitucion()))
-            return new ResponseEntity(new Mensaje("La institución es obligatoria"), HttpStatus.BAD_REQUEST);
-        
-        if (StringUtils.isBlank(dtoEdu.getDescripcionEd()))
-            return new ResponseEntity(new Mensaje("La descripcion es obligatoria"), HttpStatus.BAD_REQUEST);
-
-        Educacion educacion = sEducacion.getOne(id).get();
-        educacion.setTituloEd(dtoEdu.getTituloEd());
-        educacion.setInstitucion(dtoEdu.getInstitucion());
-        educacion.setFechaIngreso(dtoEdu.getFechaIngreso());
-        educacion.setFechaFinal(dtoEdu.getFechaFinal());
-        educacion.setDescripcionEd(dtoEdu.getDescripcionEd());
+    //ACtualizar 
+    @PutMapping("/update")
+    public  void update(@RequestBody Educacion educacion) {
+         System.out.println(educacion);    
         sEducacion.save(educacion);
-        return new ResponseEntity(new Mensaje("Educación actualizada"), HttpStatus.OK);
     }
 }

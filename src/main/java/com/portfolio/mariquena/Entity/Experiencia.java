@@ -1,5 +1,5 @@
-package com.portfolio.mariquena.Entity;
 
+package com.portfolio.mariquena.Entity;
 
 import java.io.Serializable;
 import javax.persistence.Column;
