@@ -55,10 +55,9 @@ public class PersonaController {
     //Editar persona
     //URL:PUERTO/personas/editar
     @PutMapping("/personas/update")
-    public  ResponseEntity <?> editPersona( @RequestBody Persona persona){
+    public  void editPersona( @RequestBody Persona persona){
        // Persona personas = ipersonaService.findPersona((long)1);
         ipersonaService.savePersona(persona);
-        return new ResponseEntity(new Mensaje("Persona ok"), HttpStatus.OK);
     }
     
     @GetMapping("/personas/traer/perfil")
