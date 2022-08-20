@@ -1,9 +1,13 @@
 package com.portfolio.mariquena.Controller;
 
+import com.azul.crs.client.Response;
 import com.portfolio.mariquena.Entity.Persona;
 import com.portfolio.mariquena.Interface.IPersonaService;
+import com.portfolio.mariquena.Security.Controller.Mensaje;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,7 +34,6 @@ public class PersonaController {
     }
     
     //Desde el front guardame esto en la base de datos
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/personas/crear")
     public String createPersona(@RequestBody Persona persona){
         ipersonaService.savePersona(persona);
@@ -50,12 +53,12 @@ public class PersonaController {
     
     
     //Editar persona
-    
     //URL:PUERTO/personas/editar
     @PutMapping("/personas/update")
-    public void editPersona( @RequestBody Persona persona){
+    public  ResponseEntity <?> editPersona( @RequestBody Persona persona){
        // Persona personas = ipersonaService.findPersona((long)1);
-        ipersonaService.savePersona(persona); 
+        ipersonaService.savePersona(persona);
+        return new ResponseEntity(new Mensaje("Persona ok"), HttpStatus.OK);
     }
     
     @GetMapping("/personas/traer/perfil")

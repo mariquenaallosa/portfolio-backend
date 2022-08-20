@@ -41,21 +41,26 @@ public class Persona implements Serializable{
     @Column(name="photo_url")
     private String photoUrl;
     
-    @NotNull
-    @Column(name="banner_url")
-    private String bannerImg;
 
     public Persona() {
     }
 
-    public Persona(Long id, String nombre, String apellido, String titulo, String about, String linkedinUrl, String githubUrl, String email, String bannerUrl, String photoUrl, String bannerImg) {
+   
+    public Persona(String nombre, String apellido, String titulo, String about, String photoUrl) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.titulo = titulo;
+        this.about = about;
+        this.photoUrl = photoUrl;
+    }
+    
+    public Persona(Long id, String nombre, String apellido, String titulo, String about, String linkedinUrl, String githubUrl, String email, String bannerUrl, String photoUrl) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.titulo = titulo;
         this.about = about;
         this.photoUrl = photoUrl;
-        this.bannerImg = bannerImg;
     }
     
     
