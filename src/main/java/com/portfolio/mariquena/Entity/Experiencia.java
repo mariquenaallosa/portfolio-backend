@@ -32,7 +32,6 @@ public class Experiencia implements Serializable{
     @Column(name="descripcion_e")
     private String descripcionE;
     
-    
   
     //Constructores
     public Experiencia() {
@@ -53,7 +52,5 @@ public class Experiencia implements Serializable{
         this.fechaIngreso = fechaIngreso;
         this.fechaFinal = fechaFinal;
         this.descripcionE = descripcionE;
-    }
-
-       
+       }
 }

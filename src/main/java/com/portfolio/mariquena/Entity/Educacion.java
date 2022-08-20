@@ -33,8 +33,9 @@ public class Educacion implements Serializable {
     
     @Column (name="descripcion_ed")    
     private String descripcionEd;
-
-
+    
+    @Column (name="img_url")
+    private String imgUrl;
 
     
     
@@ -43,22 +44,24 @@ public class Educacion implements Serializable {
     public Educacion() {
     }
 
-    public Educacion(String tituloEd, String institucion, int fechaIngreso,int fechaFinal, String descripcionEd) {
+    public Educacion(String tituloEd, String institucion, int fechaIngreso,int fechaFinal, String descripcionEd,String imgUrl) {
         this.tituloEd = tituloEd;
         this.institucion = institucion;
         this.fechaIngreso = fechaIngreso;
         this.fechaFinal = fechaFinal;
         this.descripcionEd = descripcionEd;
+        this.imgUrl = imgUrl;
         
     }
 
 
-    public Educacion(int id, String tituloEd, String institucion, int fechaIngreso,int fechaFinal, String descripcionEd) {
+    public Educacion(int id, String tituloEd, String institucion, int fechaIngreso,int fechaFinal, String descripcionEd,String imgUrl) {
         this.id = id;
         this.tituloEd = tituloEd;
         this.institucion = institucion;
         this.fechaIngreso = fechaIngreso;
         this.descripcionEd = descripcionEd;
+        this.imgUrl = imgUrl;
     }
 
     

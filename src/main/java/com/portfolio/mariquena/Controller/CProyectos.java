@@ -65,46 +65,17 @@ public class CProyectos {
     }
 
 // Crear
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody dtoProyectos dtoproyectos) {
-        if (StringUtils.isBlank(dtoproyectos.getTitulo()))
-            return new ResponseEntity(new Mensaje("El titulo es obligatorio"), HttpStatus.BAD_REQUEST);
-        if (StringUtils.isBlank(dtoproyectos.getDescripcion()))
-            return new ResponseEntity(new Mensaje("La descripción del proyecto es obligatoria"), HttpStatus.BAD_REQUEST);
-        
-        
-        Proyectos proyectos = new Proyectos(dtoproyectos.getTitulo(),dtoproyectos.getDescripcion(),dtoproyectos.getImgUrl(),dtoproyectos.getDemoUrl(),dtoproyectos.getRepoUrl());
+    public void create(@RequestBody Proyectos proyectos) {
         sProyectos.save(proyectos);
-      
-        return new ResponseEntity(new Mensaje("Proyecto creado"), HttpStatus.OK);
     }
 
  
     //Actualizar
-    @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/update/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoProyectos dtoproyectos) {
-        if (!sProyectos.existsById(id))
-            return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
-        
-        if (sProyectos.existsByTitulo(dtoproyectos.getTitulo()) && sProyectos.getByTitulo(dtoproyectos.getTitulo()).get().getId() != id)
-            return new ResponseEntity(new Mensaje("Ese proyecto ya existe"), HttpStatus.BAD_REQUEST);
-        
-        if (StringUtils.isBlank(dtoproyectos.getTitulo()))
-            return new ResponseEntity(new Mensaje("El proyecto es obligatorio"), HttpStatus.BAD_REQUEST);
-        
-        if (StringUtils.isBlank(dtoproyectos.getDescripcion()))
-            return new ResponseEntity(new Mensaje("La descripción del proyecto es obligatoria"), HttpStatus.BAD_REQUEST);
-
-        Proyectos proyectos = sProyectos.getOne(id).get();
-        proyectos.setTitulo(dtoproyectos.getTitulo());
-        proyectos.setDescripcion(dtoproyectos.getDescripcion());
-       proyectos.setImgUrl(dtoproyectos.getImgUrl());
-       proyectos.setRepoUrl(dtoproyectos.getRepoUrl());
-       proyectos.setRepoUrl(dtoproyectos.getDemoUrl());
+    @PutMapping("/update")
+    public void update(@RequestBody Proyectos proyectos) {
         
         sProyectos.save(proyectos);
-        return new ResponseEntity(new Mensaje("Proyecto actualizado"), HttpStatus.OK);
+        
     }
 }
