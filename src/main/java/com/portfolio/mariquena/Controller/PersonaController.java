@@ -55,13 +55,14 @@ public class PersonaController {
     //Editar persona
     //URL:PUERTO/personas/editar
     @PutMapping("/personas/update")
-    public  void editPersona( @RequestBody Persona persona){
-       // Persona personas = ipersonaService.findPersona((long)1);
+    public String editPersona(@RequestBody Persona persona){
+        //Persona personas = ipersonaService.findPersona((long)1);
         ipersonaService.savePersona(persona);
+        return "Actualizado los datos";
     }
     
-    @GetMapping("/personas/traer/perfil")
-    public Persona findPersona(){
-     return ipersonaService.findPersona((long)1);
-    }
+    //@GetMapping("/personas/traer/perfil")
+   // public Persona findPersona(){
+     //return ipersonaService.findPersona((long)1);
+    //}
 }
