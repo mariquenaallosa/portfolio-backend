@@ -1,13 +1,9 @@
 package com.portfolio.mariquena.Controller;
 
-import com.azul.crs.client.Response;
 import com.portfolio.mariquena.Entity.Persona;
 import com.portfolio.mariquena.Interface.IPersonaService;
-import com.portfolio.mariquena.Security.Controller.Mensaje;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
