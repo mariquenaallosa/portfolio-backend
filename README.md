@@ -43,4 +43,4 @@ NOTA: Reemplazar los valores borrando los <>.
     `mvn sprin-boot:run`
 
 ## 📩 Contacto
-🙋🏻‍♀️ Si tienes dudas podés hacerlo a través de: **[LinkedIn](https://www.linkedin.com/in/mariquenaallosa/) **
+🙋🏻‍♀️ Si tienes dudas podés hacerlo a través de: **[LinkedIn](https://www.linkedin.com/in/mariquenaallosa/)**
